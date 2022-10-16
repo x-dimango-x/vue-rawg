@@ -5,7 +5,7 @@ import {ref} from "vue";
 export const useApiStore = defineStore('api-store', () => {
     const games = ref([])
 
-    async function getApiJson(query, params='') {
+    async function getApiJson(query, params = '') {
         if (!query) throw('Category must provided');
         let res = await fetch(`https://rawg.io/api/${query}?token&key=${apiKey}${params}`)
             .catch(err => {
@@ -16,6 +16,15 @@ export const useApiStore = defineStore('api-store', () => {
         return await res.json()
     }
 
-    return {getApiJson, games}
+    function toArray(data) {
+        const proxy = new Proxy([data], {
+            get(target, prop) {
+                return target[prop];
+            }
+        });
+        return [proxy]
+    }
+
+    return {getApiJson, games, toArray}
 
 })

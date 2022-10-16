@@ -4,7 +4,7 @@
       <div class="container p-2">
 
         <router-link to="/" class="text-decoration-none">
-          <a class="navbar-brand">Name</a>
+          <a class="navbar-brand">Game DB</a>
         </router-link>
 
         <ul class="navbar-nav me-auto">
